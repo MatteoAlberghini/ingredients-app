@@ -1,5 +1,5 @@
 /*
- * Home screen
+ * Expires screen
  */
 // SECTION Imports
 import { StatusBar } from 'expo-status-bar'
@@ -10,9 +10,13 @@ import { NavigationContainer } from '@react-navigation/native'
 import ApplicationContext from '../contexts/ApplicationContext'
 
 // SECTION Main functions
-export default function Query() {
+export default function Expires() {
   // ANCHOR Constants
   const applicationContext = React.useContext(ApplicationContext)
 
-  return <View style={{ height: '100%', width: '100%', backgroundColor: '#FF9' }} />
+  return (
+    <View style={{ height: '100%', width: '100%', backgroundColor: '#0ff' }}>
+      
+    </View>
+  )
 }
