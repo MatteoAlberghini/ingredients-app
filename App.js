@@ -1,21 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/*
+ * Main entry point of app
+ */
+// SECTION Imports
+import { StatusBar } from 'expo-status-bar'
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+// React Navigation
+import { NavigationContainer } from '@react-navigation/native'
+import HomeNavigator from './src/navigators/HomeNavigator'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// SECTION Main functions
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  // ANCHOR Functions
+  const getItems = async () => {
+    try {
+      const items = await AsyncStorage.getItem('items')
+      if (items === null || items === undefined) {
+        console.log(null)
+      }
+      console.log(JSON.parse(items))
+    } catch (e) {
+      console.log(e)
+      console.log(null)
+    }
+  }
+  React.useEffect(() => {
+    getItems()
+  }, [])
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  // ANCHOR Return statement
+  return (
+    <NavigationContainer>
+      <HomeNavigator />
+    </NavigationContainer>
+  )
+}
